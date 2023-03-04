@@ -6,9 +6,10 @@ require_relative 'lib/data_transformer'
 require_relative 'lib/ofx_generator'
 require_relative 'lib/statement'
 
-filename = ARGV[0]
+source_filename = ARGV[0]
+output_filename = ARGV[1]
 
-raw_statements = Extractor.extract_statements(filename)
+raw_statements = Extractor.extract_statements(source_filename)
 
 statements = raw_statements.map do |statement|
   Statement.new(
@@ -20,4 +21,4 @@ statements = raw_statements.map do |statement|
   )
 end
 
-puts OfxGenerator.new(statements).generate
+File.write(output_filename, OfxGenerator.new(statements).generate)
