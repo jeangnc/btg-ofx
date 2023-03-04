@@ -17,7 +17,7 @@ class DataTransformer
   }
 
   def self.value(value_string)
-    value_string.gsub(' R$ ', '').gsub('.', '').gsub(',', '.').to_f
+    value_string.gsub('R$', '').gsub('.', '').gsub(',', '.').gsub(' ', '').to_f
   end
 
   def self.date(date_string)
