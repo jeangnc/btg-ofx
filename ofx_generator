@@ -2,7 +2,17 @@
 
 require_relative './spec'
 require_relative 'lib/extractor'
+require_relative 'lib/data_transformer'
+require_relative 'lib/statement'
 
 filename = ARGV[0]
 
-puts Extractor.extract_statements(filename)
+raw_statements = Extractor.extract_statements(filename)
+
+statements = raw_statements.map do |statement|
+  Statement.new(
+    statement[:description],
+    DataTransformer.value(statement[:value]),
+    DataTransformer.date(statement[:date])
+  )
+end
