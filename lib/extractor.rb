@@ -1,4 +1,3 @@
-
 class Extractor
   DATE_REGEXP = /[0-9]{2} [a-zA-Z]{3}/
   DESCRIPTION_REGEXP = /.+?(?=-|R\$)/
