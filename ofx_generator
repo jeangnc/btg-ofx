@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+require_relative './spec'
+require_relative 'lib/extractor'
+
+filename = ARGV[0]
+
+puts Extractor.extract_statements(filename)
