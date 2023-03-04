@@ -2,6 +2,7 @@ class Extractor
   DATE_REGEXP = /[0-9]{2} [a-zA-Z]{3}/
   DESCRIPTION_REGEXP = /.+?(?=-|R\$)/
   AMOUNT_REGEXP = /(- )?R\$ ([0-9]+\.?)+\,[0-9]{2}/
+  INSTALLMENT_REGEXP = /.*\((?<current>\d+)\/(?<total>\d+)\)$/
   STATEMENT_REGEXP = /((?<date>#{DATE_REGEXP})\W+(?<name>#{DESCRIPTION_REGEXP})(?<amount>#{AMOUNT_REGEXP}))/
 
   def self.extract_statements(filepath)
@@ -18,10 +19,19 @@ class Extractor
 
       lines.each do |line|
         line.scan(STATEMENT_REGEXP).each do |statement|
+          description = statement[1].strip
+
+          match = description.match(INSTALLMENT_REGEXP)
+          installments = {
+            current: match[:current],
+            total: match[:total]
+          } if match
+
           memo << {
+            description: description,
             date: statement[0].strip,
-            description: statement[1].strip,
-            amount: statement[2].strip
+            amount: statement[2].strip,
+            installments: installments
           }
         end
       end

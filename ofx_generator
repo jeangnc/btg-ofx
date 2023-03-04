@@ -14,7 +14,9 @@ statements = raw_statements.map do |statement|
   Statement.new(
     statement[:description],
     DataTransformer.amount(statement[:amount]),
-    DataTransformer.date(statement[:date])
+    DataTransformer.date(statement[:date]),
+    statement.dig(:installments, :current),
+    statement.dig(:installments, :total),
   )
 end
 
