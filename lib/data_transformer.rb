@@ -23,7 +23,13 @@ class DataTransformer
   def self.date(date_string)
     day, month = date_string.split(' ')
     month = MONTHS[month]
+    year = Date.today.year
 
-    Date.parse "#{Date.today.year}-#{month}-#{day}"
+    # not ideal, but ok
+    if month > Date.today.month
+      year -= 1
+    end
+
+    Date.parse "#{year}-#{month}-#{day}"
   end
 end
