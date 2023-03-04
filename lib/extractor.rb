@@ -9,6 +9,8 @@ class Extractor
     reader = PDF::Reader.new(filepath)
 
     pages = reader.pages.to_a
+
+    # cover pages and closing remarks
     pages.shift(2)
     pages.pop
 
