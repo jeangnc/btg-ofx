@@ -13,7 +13,7 @@ raw_statements = Extractor.extract_statements(filename)
 statements = raw_statements.map do |statement|
   Statement.new(
     statement[:description],
-    DataTransformer.value(statement[:value]),
+    DataTransformer.amount(statement[:amount]),
     DataTransformer.date(statement[:date])
   )
 end

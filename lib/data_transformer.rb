@@ -16,8 +16,8 @@ class DataTransformer
     'Dez' => 12
   }
 
-  def self.value(value_string)
-    value_string.gsub('R$', '').gsub('.', '').gsub(',', '.').gsub(' ', '').to_f
+  def self.amount(amount_string)
+    amount_string.gsub('R$', '').gsub('.', '').gsub(',', '.').gsub(' ', '').to_f
   end
 
   def self.date(date_string)

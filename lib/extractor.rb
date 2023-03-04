@@ -1,8 +1,8 @@
 class Extractor
   DATE_REGEXP = /[0-9]{2} [a-zA-Z]{3}/
   DESCRIPTION_REGEXP = /.+?(?=-|R\$)/
-  VALUE_REGEXP = /(- )?R\$ ([0-9]+\.?)+\,[0-9]{2}/
-  STATEMENT_REGEXP = /((?<date>#{DATE_REGEXP})\W+(?<name>#{DESCRIPTION_REGEXP})(?<value>#{VALUE_REGEXP}))/
+  AMOUNT_REGEXP = /(- )?R\$ ([0-9]+\.?)+\,[0-9]{2}/
+  STATEMENT_REGEXP = /((?<date>#{DATE_REGEXP})\W+(?<name>#{DESCRIPTION_REGEXP})(?<amount>#{AMOUNT_REGEXP}))/
 
   def self.extract_statements(filepath)
     reader = PDF::Reader.new(filepath)
@@ -21,7 +21,7 @@ class Extractor
           memo << {
             date: statement[0].strip,
             description: statement[1].strip,
-            value: statement[2].strip
+            amount: statement[2].strip
           }
         end
       end

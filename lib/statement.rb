@@ -1,9 +1,9 @@
 class Statement
-  attr_reader :description, :value, :date
+  attr_reader :description, :amount, :date
 
-  def initialize(description, value, date)
+  def initialize(description, amount, date)
     @description = description
-    @value = value
+    @amount = amount
     @date = date
   end
 end
