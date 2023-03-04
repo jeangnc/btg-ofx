@@ -8,4 +8,9 @@ class Statement
     @current_installment = current_installment
     @total_installments = total_installments
   end
+
+  def total_amount
+    return @amount unless @total_installments
+    @amount * @total_installments
+  end
 end

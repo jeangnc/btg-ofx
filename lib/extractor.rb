@@ -23,8 +23,8 @@ class Extractor
 
           match = description.match(INSTALLMENT_REGEXP)
           installments = {
-            current: match[:current],
-            total: match[:total]
+            current: match[:current].to_i,
+            total: match[:total].to_i
           } if match
 
           memo << {
