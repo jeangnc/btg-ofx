@@ -3,6 +3,7 @@
 require_relative './spec'
 require_relative 'lib/extractor'
 require_relative 'lib/data_transformer'
+require_relative 'lib/ofx_generator'
 require_relative 'lib/statement'
 
 filename = ARGV[0]
@@ -16,3 +17,5 @@ statements = raw_statements.map do |statement|
     DataTransformer.date(statement[:date])
   )
 end
+
+puts OfxGenerator.new(statements).generate
