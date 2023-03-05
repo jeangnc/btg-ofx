@@ -36,7 +36,7 @@ class OfxGenerator
       <<-OFX
       <STMTTRN>
         <TRNTYPE>OTHER</TRNTYPE>
-        <DTPOSTED>#{statement.date.strftime('%Y%m%d')}000000[-3:GMT]</DTPOSTED>
+        <DTPOSTED>#{statement.date.strftime('%Y%m%d000000[-3:GMT]')}</DTPOSTED>
         <TRNAMT>#{statement.amount}</TRNAMT>
         <MEMO>#{statement.description}</MEMO>
       </STMTTRN>
