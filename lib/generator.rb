@@ -1,4 +1,4 @@
-class OfxGenerator
+class Generator
   def initialize(statements)
     @statements = statements
   end
